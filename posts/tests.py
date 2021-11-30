@@ -14,7 +14,7 @@ class PostModelTest(TestCase):
 
 class PostListViewTest(TestCase):
     def setUp(self):
-        Post.objects.create(text="this is a test", body="whatever")
+        Post.objects.create(title="this is a test", body="whatever")
 
     def test_view_url_exists_at_proper_location(self):
         resp = self.client.get("/posts/")
@@ -26,7 +26,7 @@ class PostListViewTest(TestCase):
 
     def test_view_url_uses_correct_templates(self):
         resp = self.client.get("/posts/")
-        self.assertTemplateUsed(resp.status_code, "post_detail.html")
+        self.assertTemplateUsed(resp, "post_list.html")
         self.assertTemplateUsed(resp, "base.html")
 
     def test_view_url_by_name(self):
